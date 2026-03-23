@@ -1,0 +1,35 @@
+TEST 1: Create Post
+POST /posts
+Body:
+{
+  "content": "Hello TA",
+  "privacy": "public",
+  "userId": 1
+}
+Expected: 201 Created
+
+TEST 2: Get Posts
+GET /posts?page=1
+Expected: List of posts
+
+TEST 3: Add Comment
+POST /posts/1/comment
+Body:
+{
+  "content": "Nice post"
+}
+Expected: 201 Created
+
+TEST 4: Like Post
+POST /posts/1/like
+Expected: Post liked
+
+TEST 5: Delete Post (Admin)
+DELETE /posts/1
+Header:
+role: admin
+Expected: Post deleted
+
+TEST 6: Delete Post (Unauthorized)
+DELETE /posts/1
+Expected: 403 Forbidden
