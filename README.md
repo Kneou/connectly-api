@@ -1,55 +1,81 @@
-# Connectly API (Python Flask)
+# Connectly API (Flask) – Terminal Assessment
 
-## Overview
+## 📌 Overview
+Connectly API is a social-style backend system built using Python Flask.  
+It supports core social features such as posts, comments, and likes, and is enhanced with security and performance optimizations.
 
-This project is a social-style backend API that allows users to create posts, comment, like, and manage content with role-based access control (RBAC) and privacy settings.
+---
 
-## Features
+## 🚀 Features
 
-* User Registration
-* Simulated Google OAuth Login
-* Create Posts
-* Comment on Posts
-* Like Posts
-* Delete Posts and Comments (Admin only)
-* Privacy Settings (Public / Private)
-* Pagination (News Feed)
+### 🔐 Security
+- Role-Based Access Control (RBAC)
+  - Admin users can delete posts and comments
+  - Regular users have limited permissions
 
-## Technologies Used
+- Privacy Settings
+  - Posts can be set to **public** or **private**
+  - Private posts are only visible to the owner
 
-* Python (Flask)
-* Postman (API Testing)
+---
 
-## How to Run
+### ⚡ Performance
+- Pagination
+  - Limits number of posts returned per request
+  - Example: `/posts?page=1`
 
-1. Install dependencies:
-   pip install flask
+---
 
-2. Run the server:
-   python app.py
+### 💬 Core Functionalities
+- Create Posts
+- Comment on Posts
+- Like Posts
+- View Comments and Likes
+- Simulated Google OAuth Login
 
-3. Open Postman:
-   http://localhost:5000
+---
 
-## API Endpoints
+## 🛠️ Tech Stack
+- Python
+- Flask
+- Postman (API Testing)
 
-POST /register
-POST /auth/google
+---
 
-POST /posts
-GET /posts?page=1
+## 📂 API Endpoints
 
-POST /posts/{id}/comment
-GET /posts/{id}/comments
+### Authentication
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| POST | /register | Register user |
+| POST | /auth/google | Simulated Google login |
 
-POST /posts/{id}/like
-GET /posts/{id}/likes
+---
 
-DELETE /posts/{id} (Admin only)
-DELETE /comments/{id} (Admin only)
+### Posts
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| POST | /posts | Create post |
+| GET | /posts | Get posts (with pagination + privacy) |
+| DELETE | /posts/:id | Delete post (Admin only) |
 
-## Notes
+---
 
-* Data is stored in memory (no database yet)
-* Google OAuth is simulated for demonstration
-* RBAC is implemented using request headers (role: admin)
+### Comments
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| POST | /posts/:id/comment | Add comment |
+| GET | /posts/:id/comments | Get comments |
+
+---
+
+### Likes
+| Method | Endpoint | Description |
+|--------|---------|-------------|
+| POST | /posts/:id/like | Like post |
+| GET | /posts/:id/likes | Get likes |
+
+---
+
+## 🔐 RBAC Implementation
+Role is passed via request headers:
